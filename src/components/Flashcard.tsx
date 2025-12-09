@@ -1,7 +1,8 @@
 import { useState } from "react"
 import styles from "./Flashcard.module.css"
+import type { FlashCardType } from "../pages/Home"
 
-const Flashcard = () => {
+const Flashcard = ({answer,points,question}:FlashCardType) => {
 
     const [flipped, setFlipped] = useState(false)
 
@@ -11,11 +12,12 @@ const Flashcard = () => {
     transform: `rotateY(${flipped ? 180: 0}deg)`
   }}>
     <div className={styles.flipCardFront}>
-        <h2>Mikor van Mikulás?</h2>
+        <h2>{question}</h2>
     </div>
     <div className={styles.flipCardBack}>
-        <header>5</header>
-        <h2>December 6.</h2>
+        <header style={{background: points > 0 ? "var(--green)" : "var(--red)"}}
+        >{points}</header>
+        <h2>{answer}</h2>
         <div>
             <button>
                 <i className="fa-regular fa-circle-check"></i>
